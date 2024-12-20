@@ -99,7 +99,7 @@ class DeletePost(LoginRequiredMixin, DataMixin, DeleteView):
 
 class UpdatePost(LoginRequiredMixin, DataMixin, UpdateView):
     model = Note
-    fields = ['title', 'content', 'image', 'is_published', 'cat']
+    fields = ['title', 'content', 'image', 'is_published', 'cat', 'tags']
     template_name = 'notes/add_post.html'
     success_url = reverse_lazy('home')  # Если не указывать, то идёт редирект на саму статью используя get_absolute_url
     login_url = reverse_lazy('home')

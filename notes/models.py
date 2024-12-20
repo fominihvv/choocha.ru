@@ -6,9 +6,6 @@ from django_extensions.db.fields import AutoSlugField
 from slugify import slugify
 
 
-# from autoslug import AutoSlugField
-
-
 class PublishedManager(models.Manager):
     def get_queryset(self):
         return super().get_queryset().filter(is_published=Note.Status.PUBLISHED)
@@ -16,11 +13,12 @@ class PublishedManager(models.Manager):
 
 class TagPost(models.Model):
     class Meta:
-        verbose_name = 'Тэг'
-        verbose_name_plural = 'Тэги'
+        verbose_name = 'Метка'
+        verbose_name_plural = 'Метки'
 
     tag = models.CharField(max_length=100, db_index=True)
-    slug = models.SlugField(max_length=255, unique=True, db_index=True)
+    slug = AutoSlugField(populate_from='tag', slugify_function=slugify, max_length=255, unique=True, db_index=True,
+                         verbose_name='Слаг')
 
     def __str__(self) -> str:
         return self.tag
@@ -35,7 +33,9 @@ class Category(models.Model):
         verbose_name_plural = 'Категории'
 
     name = models.CharField(max_length=100, db_index=True, verbose_name='Категория')
-    slug = models.SlugField(max_length=255, unique=True, db_index=True, verbose_name='Слаг')
+    #slug = models.SlugField(max_length=255, unique=True, db_index=True, verbose_name='Слаг')
+    slug = AutoSlugField(populate_from='name', slugify_function=slugify, max_length=255, unique=True, db_index=True,
+                         verbose_name='Слаг')
 
     def __str__(self) -> str:
         return self.name
@@ -46,8 +46,8 @@ class Category(models.Model):
 
 class Note(models.Model):
     class Meta:
-        verbose_name = 'Заметка'
-        verbose_name_plural = 'Заметки'
+        verbose_name = 'Статья'
+        verbose_name_plural = 'Статьи'
         ordering = ['title', '-time_create']
         indexes = [
             models.Index(fields=['title', '-time_create']),
@@ -67,7 +67,7 @@ class Note(models.Model):
     is_published = models.BooleanField(choices=tuple(map(lambda x: (bool(x[0]), x[1]), Status.choices)),
                                        default=Status.DRAFT, verbose_name='Опубликовано')
     cat = models.ForeignKey(Category, on_delete=models.PROTECT, related_name='posts', verbose_name='Категория')
-    tags = models.ManyToManyField(TagPost, blank=True, related_name='notes', verbose_name='Тэги')
+    tags = models.ManyToManyField(TagPost, blank=True, related_name='notes', verbose_name='Метки')
     author = models.ForeignKey(get_user_model(), on_delete=models.SET_NULL, related_name='posts', null=True, default=None,
                                verbose_name='Автор')
 
