@@ -8,11 +8,12 @@ from .models import Note, TagPost, Category
 
 @admin.register(Note)
 class NotesAdmin(admin.ModelAdmin):
-    fields = ('title', 'slug', 'image', 'post_image', 'post_image_size', 'content', 'time_create', 'time_update', 'cat', 'is_published',)
+    fields = ('title', 'slug', 'image', 'post_image', 'post_image_size', 'content', 'time_create', 'time_update', 'cat',
+              'is_published',)
     readonly_fields = ('time_create', 'time_update', 'slug', 'post_image', 'post_image_size',)
     list_display = (
         'title', 'slug', 'time_create', 'time_update', 'cat', 'is_published', 'post_image', 'post_image_size',
-        )
+    )
     list_display_links = ('title', 'cat',)
     ordering = ('time_create', 'title',)
     search_fields = ('title', 'content', 'cat__name',)
@@ -21,7 +22,6 @@ class NotesAdmin(admin.ModelAdmin):
     actions = ['set_published', 'set_draft', ]
     list_filter = ['cat__name', 'is_published', ]
     save_on_top = True
-
 
     @staticmethod
     @admin.display(description='Изображение')

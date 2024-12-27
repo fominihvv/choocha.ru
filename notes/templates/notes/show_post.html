@@ -1,4 +1,3 @@
-<!-- sitewomen\women\templates\women\show_post.html -->
 {% extends 'base.html' %}
 
 {% block breadcrumbs %}
@@ -6,7 +5,7 @@
     {% with post.tags.all as tags %}
         {% if tags %}
             <ul class="tags-list">
-                <li> Метки: </li>
+                <li> Метки:</li>
                 {% for tag in tags %}
                     <li><a href="{{ tag.get_absolute_url }}">{{ tag.tag }}</a></li>
                 {% endfor %}
@@ -16,6 +15,7 @@
 {% endblock %}
 
 {% block content %}
+
     <h1> {{ title }} </h1>
     {% if post.image %}
         <p><img class="img-article-left" src="{{ post.image.url }}" alt=""></p>

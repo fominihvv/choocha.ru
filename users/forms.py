@@ -68,3 +68,4 @@ class UserPasswordChangeForm(LoginRequiredMixin, PasswordChangeForm):
     old_password = forms.CharField(label="Старый пароль", widget=forms.PasswordInput(attrs={'class': 'form-input'}))
     new_password1 = forms.CharField(label="Новый пароль", widget=forms.PasswordInput(attrs={'class': 'form-input'}))
     new_password2 = forms.CharField(label="Повторите новый пароль", widget=forms.PasswordInput(attrs={'class': 'form-input'}))
+

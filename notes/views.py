@@ -1,6 +1,6 @@
 from typing import Any
 
-from django.contrib.auth.mixins import LoginRequiredMixin
+from django.contrib.auth.mixins import LoginRequiredMixin, PermissionRequiredMixin
 from django.db.models import QuerySet
 from django.shortcuts import get_object_or_404
 from django.urls import reverse_lazy
@@ -69,11 +69,12 @@ class NotesTags(DataMixin, ListView):
         return self.get_mixin_context(context, title='Тег: ' + tag.tag)
 
 
-class AddPost(LoginRequiredMixin, DataMixin, CreateView):
+class AddPost(PermissionRequiredMixin, DataMixin, CreateView):
     template_name = 'notes/add_post.html'
     form_class = AddPostForm
     success_url = reverse_lazy('home')  # Если не указывать, то идёт редирект на саму статью используя get_absolute_url
     login_url = reverse_lazy('home')
+    permission_required = ('notes.add_note',)
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
@@ -97,12 +98,13 @@ class DeletePost(LoginRequiredMixin, DataMixin, DeleteView):
         return self.get_mixin_context(context, title_page='Удаление статьи')
 
 
-class UpdatePost(LoginRequiredMixin, DataMixin, UpdateView):
+class UpdatePost(PermissionRequiredMixin, DataMixin, UpdateView):
     model = Note
     fields = ['title', 'content', 'image', 'is_published', 'cat', 'tags']
     template_name = 'notes/add_post.html'
     success_url = reverse_lazy('home')  # Если не указывать, то идёт редирект на саму статью используя get_absolute_url
     login_url = reverse_lazy('home')
+    permission_required = ('notes.change_note',)
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
