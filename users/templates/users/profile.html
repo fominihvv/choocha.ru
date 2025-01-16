@@ -22,8 +22,9 @@
         <button type="submit" class="btn btn-primary">Сохранить</button>
 
     </form>
-
-    <hr>
-    <p><a href="{% url 'users:password_change' %}">Изменить пароль</a></p>
+    {% if not perms.users.social_auth %}
+        <hr>
+        <p><a href="{% url 'users:password_change' %}">Изменить пароль</a></p>
+    {% endif %}
 
 {% endblock %}

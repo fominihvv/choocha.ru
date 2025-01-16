@@ -12,6 +12,14 @@
             </ul>
         {% endif %}
     {% endwith %}
+
+    {%  if perms.notes.change_note %}
+        <p><a href="{{ post.get_update_url }}">Изменить статью</a></p>
+    {% endif %}
+
+    {%  if perms.notes.delete_note %}
+        <p><a href="{{ post.get_delete_url }}">Удалить статью</a></p>
+    {% endif %}
 {% endblock %}
 
 {% block content %}

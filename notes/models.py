@@ -83,6 +83,10 @@ class Note(models.Model):
     def get_update_url(self) -> str:
         return reverse('update_post', kwargs={'pk': self.pk})
 
+    def get_delete_url(self) -> str:
+        return reverse('delete_post', kwargs={'pk': self.pk})
+
+
 
 class UploadFiles(models.Model):
     file = models.FileField(upload_to='uploads_model/', verbose_name='Файл')

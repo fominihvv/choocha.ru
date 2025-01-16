@@ -86,12 +86,13 @@ class AddPost(PermissionRequiredMixin, DataMixin, CreateView):
         return super().form_valid(form)
 
 
-class DeletePost(LoginRequiredMixin, DataMixin, DeleteView):
+class DeletePost(PermissionRequiredMixin, DataMixin, DeleteView):
     model = Note
     template_name = 'notes/delete_post.html'
     context_object_name = 'post'
     success_url = reverse_lazy('home')
     login_url = reverse_lazy('home')
+    permission_required = ('notes.delete_note',)
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
