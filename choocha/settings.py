@@ -80,9 +80,18 @@ WSGI_APPLICATION = 'choocha.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'choocha_db',
+        'USER': 'choocha',
+        'PASSWORD': 'dc109n6s:)*UU',
+        'HOST': 'localhost',
+        'PORT': '5432',
     }
+
+#     'default': {
+#         'ENGINE': 'django.db.backends.sqlite3',
+#         'NAME': BASE_DIR / 'db.sqlite3',
+#     }
 }
 
 

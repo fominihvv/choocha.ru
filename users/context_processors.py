@@ -1,3 +1,4 @@
+#choocha/users/context_processors.py
 menu = [{'title': "О сайте", 'url_name': 'about', 'for_all': True, },
         {'title': "Добавить статью", 'url_name': 'add_post', 'for_moderator': True},
         {'title': "Обратная связь", 'url_name': 'contact', 'for_all': True},
