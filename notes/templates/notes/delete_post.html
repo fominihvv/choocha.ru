@@ -1,6 +1,8 @@
-<!-- sitewomen\women\templates\women\deletepage.html -->
+<!-- choocha\notes\templates\notes\delete_post.html -->
 {% extends 'base.html' %}
-
+{% block canonical_url %}
+    <link rel="canonical" href="{% url 'home' %}"/>
+{% endblock %}
 {% block content %}
     <h1> {{ title }} </h1>
 

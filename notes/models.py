@@ -1,4 +1,3 @@
-from django.conf import settings
 from django.contrib.auth import get_user_model
 from django.db import models
 from django.shortcuts import reverse
@@ -33,7 +32,7 @@ class Category(models.Model):
         verbose_name_plural = 'Категории'
 
     name = models.CharField(max_length=100, db_index=True, verbose_name='Категория')
-    #slug = models.SlugField(max_length=255, unique=True, db_index=True, verbose_name='Слаг')
+    # slug = models.SlugField(max_length=255, unique=True, db_index=True, verbose_name='Слаг')
     slug = AutoSlugField(populate_from='name', slugify_function=slugify, max_length=255, unique=True, db_index=True,
                          verbose_name='Слаг')
 
@@ -60,7 +59,8 @@ class Note(models.Model):
     title = models.CharField(max_length=255, verbose_name='Заголовок')
     slug = AutoSlugField(populate_from='title', slugify_function=slugify, max_length=255, unique=True, db_index=True,
                          verbose_name='Слаг')
-    image = models.ImageField(upload_to='images/%Y/%m/%d/', default=None, blank=True, verbose_name='Изображение', null=True)
+    image = models.ImageField(upload_to='images/%Y/%m/%d/', default=None, blank=True, verbose_name='Изображение',
+                              null=True)
     content = models.TextField(blank=True, verbose_name='Текст статьи')
     time_create = models.DateTimeField(auto_now_add=True, verbose_name='Дата создания')
     time_update = models.DateTimeField(auto_now=True, verbose_name='Дата последнего изменения')
@@ -68,7 +68,8 @@ class Note(models.Model):
                                        default=Status.DRAFT, verbose_name='Опубликовано')
     cat = models.ForeignKey(Category, on_delete=models.PROTECT, related_name='posts', verbose_name='Категория')
     tags = models.ManyToManyField(TagPost, blank=True, related_name='notes', verbose_name='Метки')
-    author = models.ForeignKey(get_user_model(), on_delete=models.SET_NULL, related_name='posts', null=True, default=None,
+    author = models.ForeignKey(get_user_model(), on_delete=models.SET_NULL, related_name='posts', null=True,
+                               default=None,
                                verbose_name='Автор')
 
     objects = models.Manager()
@@ -87,10 +88,5 @@ class Note(models.Model):
         return reverse('delete_post', kwargs={'pk': self.pk})
 
 
-
 class UploadFiles(models.Model):
     file = models.FileField(upload_to='uploads_model/', verbose_name='Файл')
-
-
-
-

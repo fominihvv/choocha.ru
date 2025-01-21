@@ -1,6 +1,6 @@
-/* sitewomen\women\static\women\css\styles.css */
+/* choocha\notes\static\notes\css\styles.css */
 html, body {
-	font-family: 'Arial';
+	font-family: 'Arial', sans-serif;
 	margin: 0;
 	padding: 0;
 	height: 100%;
@@ -79,11 +79,22 @@ ul.list-articles li {
 	border-bottom: 1px solid #ccc;
 }
 
-.table-page {
-	width: 100%;
+/* Общие стили для таблиц */
+.table-page,
+.table-content {
+    width: 100%;
 	height: 100%;
 	vertical-align: top;
+    border-spacing: 0; /* Убираем интервалы между ячейками */
+    border-collapse: collapse; /* Объединяем границы ячеек */
 }
+
+/* Отступы внутри ячеек */
+.table-page td,
+.table-content td {
+    padding: 0; /* По умолчанию нет отступов */
+}
+
 .table-page tr {height: 100%;}
 
 .clear {clear: both;}
@@ -167,17 +178,28 @@ div.button {
 	font-size: 20px;
 }
 
-.table-content {
-	width: 100%;
-	min-height: 100%;
-	height: 100%;
-}
-
+/* Дополнительные стили для конкретных элементов */
 .left-chapters {
+    /*vertical-align: top; /* Устанавливаем вертикальное выравнивание */
 	margin: 0;
 	background: #eee;
 	border-right: 1px solid #ccc;
+
 }
+
+.content {
+    vertical-align: top;
+}
+
+.content-text {
+    padding: 10px; /* Можно изменить отступы под нужды */
+	margin: 60px 0 0 30px;
+	color: #000;
+	font-size: 20px;
+	font-family: 'Yandex Sans Display Light', sans-serif;
+}
+.content-text h1 {font-size: 32px;}
+
 .left-chapters ul {
 	width: 230px;
 	margin: 0;
@@ -244,7 +266,7 @@ ul.breadcrumbs {
 	padding: 0;
 	list-style: none;
 	font-size: 20px;
-	font-family: Sans-serif, Arial, Tahoma;
+	font-family: Arial, Tahoma, sans-serif;
 }
 ul.breadcrumbs li {
 	display: inline-block;
@@ -264,7 +286,7 @@ ul.control {
 	margin: 0;
 	padding: 60px 0 0 0;
 	list-style: none;
-	font-family: Sans-serif, Arial, Tahoma;
+	font-family: Arial, Tahoma,sans-serif;
 	font-size: 18px;
 	width: 100%;
 }
@@ -279,7 +301,7 @@ ul.content-table {
 	margin: 0;
 	padding: 60px 0 0 30px;
 	list-style: none;
-	font-family: Sans-serif, Arial, Tahoma;
+	font-family: Arial, Tahoma, sans-serif;
 	font-size: 28px;
 }
 ul.content-table li {
@@ -291,13 +313,7 @@ ul.content-table li a {
 }
 ul.content-table li a:hover {color: #F0711C;}
 
-.content-text {
-	margin: 60px 0 0 30px;
-	color: #000;
-	font-size: 20px;
-	font-family: Yandex Sans Display Light;
-}
-.content-text h1 {font-size: 32px;}
+
 
 ul.lang-list {
 	list-style: none;
@@ -309,7 +325,7 @@ ul.lang-list {
 	border-top: 1px solid #959A82;
 	box-sizing: border-box;
 	font-size: 18px;
-	font-family: Sans-serif, Arial, Tahoma;
+	font-family: Arial, Tahoma, sans-serif;
 }
 ul.lang-list li {
 	display: inline-block;
@@ -334,12 +350,12 @@ ul.lang-list li a:hover {color: #fdc073;}
 	padding: 0 10px 0 10px;
 	margin-left: 30px;
 	background: #fff;
-	font-family: Sans-serif, Arial, Tahoma;
+	font-family: Arial, Tahoma, sans-serif;
 }
 
 .list-topic {
 	margin: 40px 0 60px 0;
-	font-family: Sans-serif, Arial, Tahoma;
+	font-family: Arial, Tahoma, sans-serif;
 }
 .list-topic p {
 	margin: 0;
@@ -352,7 +368,7 @@ ul.lang-list li a:hover {color: #fdc073;}
 }
 .list-topic ol li {
 	display: list-item;
-	margin: 10px 10px 0 0px;
+	margin: 10px 10px 0 0;
 	padding: 0 0 0 10px;
 }
 .list-topic ol li a {
@@ -379,7 +395,7 @@ ul.lang-list li a:hover {color: #fdc073;}
 .quote {
 	background: url('../images/blockquote.png') no-repeat 0 10px;
 	padding: 5px 5px 5px 70px;
-	font-family: Sans-serif, Arial, Tahoma;
+	font-family: Arial, Tahoma, sans-serif;
 	font-style: italic;
 }
 
@@ -390,7 +406,7 @@ ul.lang-list li a:hover {color: #fdc073;}
 	padding: 5px;
 	color: #aaa;
 	font-size: 14px;
-	font-family: Verdana, Geneva, Arial, Helvetica;
+	font-family: Verdana, Geneva, Arial, Helvetica, sans-serif;
 	text-align: left;
 	overflow: hidden;
 }

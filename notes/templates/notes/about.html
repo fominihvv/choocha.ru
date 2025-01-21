@@ -1,6 +1,8 @@
-<!-- sitewomen\women\templates\women\about.html -->
+<!-- choocha\notes\templates\choocha\about.html -->
 {% extends 'base.html' %}
-
+{% block canonical_url %}
+    <link rel="canonical" href="{% url 'home' %}" />
+{% endblock %}
 {% block content %}
     <h1> {{ title }} </h1>
     Данный сайт это пет-проект разрабатываемый в рамках курса по изучению Django

@@ -1,13 +1,15 @@
-<!-- sitewomen\women\templates\women\show_category.html -->
+<!-- choocha\notes\templates\notes\show_category.html -->
 {% extends 'base.html' %}
-
+{% block canonical_url %}
+    <link rel="canonical" href="{% url 'home' %}"/>
+{% endblock %}
 {% block content %}
     <ul class="list-articles">
         {% for post in posts %}
             <li>
                 <div class="article-panel">
                     <p class="first"> Категория: {{ post.cat.name }}</p>
-                    <p class="last"> Дата: {{ post.time_update|date:"d-m-Y H:i:s" }}</p>
+                    <p class="last"> Дата: {{ post.time_update|date:"d-m-Y H:i" }}</p>
                 </div>
                 {% if post.photo %}
                     <p><img class="img-article-left" src="{{ post.photo.url }}" alt=""></p>
