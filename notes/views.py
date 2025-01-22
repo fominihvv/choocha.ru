@@ -2,7 +2,7 @@ from typing import Any
 
 from django.contrib.auth.mixins import LoginRequiredMixin, PermissionRequiredMixin
 from django.db.models import QuerySet
-from django.shortcuts import get_object_or_404
+from django.shortcuts import get_object_or_404, redirect
 from django.urls import reverse_lazy
 from django.views.generic import TemplateView, ListView, DetailView, CreateView, DeleteView, UpdateView
 
@@ -10,6 +10,9 @@ from .forms import AddPostForm
 from .models import Note, TagPost, Category
 from .utils import DataMixin
 
+
+from django.conf import settings
+from django.core.mail import send_mail
 
 class NoteHome(DataMixin, ListView):
     template_name = 'notes/index.html'
@@ -126,3 +129,9 @@ class ContactView(DataMixin, TemplateView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         return self.get_mixin_context(context, title_page='Обратная связь')
+
+
+def sendmail(request):
+    print('Send mail')
+    send_mail('Тема', 'Тело письма', settings.EMAIL_HOST_USER, ['fominyh_vv@specmash-kb.com'])
+    return redirect('home')

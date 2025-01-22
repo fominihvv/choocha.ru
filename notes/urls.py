@@ -12,5 +12,6 @@ urlpatterns = [
     path('tag/<slug:tag_slug>/', views.NotesTags.as_view(), name='tag'),
     path('update/<int:pk>/', views.UpdatePost.as_view(), name='update_post'),
     path('delete/<int:pk>/', views.DeletePost.as_view(), name='delete_post'),
+    path('sendmail', views.sendmail, name='sendmail'),
 
 ]
