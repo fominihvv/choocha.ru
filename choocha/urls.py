@@ -26,6 +26,7 @@ urlpatterns = [
     path('', include('notes.urls')),
     path('users/', include('users.urls')),
     path('social-auth/', include('social_django.urls', namespace='social')),
+    path("ckeditor5/", include('django_ckeditor_5.urls'), name="ck_editor_5_upload_file"),
 ]
 
 if settings.DEBUG:

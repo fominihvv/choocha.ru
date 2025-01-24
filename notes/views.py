@@ -104,7 +104,7 @@ class DeletePost(PermissionRequiredMixin, DataMixin, DeleteView):
 
 class UpdatePost(PermissionRequiredMixin, DataMixin, UpdateView):
     model = Note
-    fields = ['title', 'content', 'image', 'is_published', 'cat', 'tags']
+    fields = ['title', 'content_short', 'content_full', 'image', 'is_published', 'cat', 'tags']
     template_name = 'notes/add_post.html'
     success_url = reverse_lazy('home')  # Если не указывать, то идёт редирект на саму статью используя get_absolute_url
     login_url = reverse_lazy('home')
@@ -129,9 +129,3 @@ class ContactView(DataMixin, TemplateView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         return self.get_mixin_context(context, title_page='Обратная связь')
-
-
-def sendmail(request):
-    print('Send mail')
-    send_mail('Тема', 'Тело письма', settings.EMAIL_HOST_USER, ['fominyh_vv@specmash-kb.com'])
-    return redirect('home')

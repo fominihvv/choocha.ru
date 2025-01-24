@@ -1,7 +1,7 @@
 <!-- choocha\notes\templates\notes\index.html -->
 {% extends 'base.html' %}
 {% block canonical_url %}
-    <link rel="canonical" href="{% url 'home' %}" />
+    <link rel="canonical" href="{% url 'home' %}"/>
 {% endblock %}
 {% block content %}
     <ul class="list-articles">
@@ -17,7 +17,9 @@
                 {% endif %}
                 <h2><a href={{ post.get_absolute_url }}>{{ post.title }}</a></h2>
                 {% autoescape off %}
-                    {{ post.content|linebreaks|truncatewords:40 }}
+                    <div class="ck-content">
+                        {{ post.content_short|safe }}
+                    </div>
                 {% endautoescape %}
                 <div class="clear"></div>
                 <p class="link-read-post"><a href={{ post.get_absolute_url }}>Читать пост</a></p>

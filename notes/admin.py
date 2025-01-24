@@ -8,15 +8,15 @@ from .models import Note, TagPost, Category
 
 @admin.register(Note)
 class NotesAdmin(admin.ModelAdmin):
-    fields = ('title', 'slug', 'image', 'post_image', 'post_image_size', 'content', 'time_create', 'time_update', 'cat',
-              'is_published',)
+    fields = ('title', 'slug', 'image', 'post_image', 'post_image_size', 'content_short', 'content_full', 'time_create',
+              'time_update', 'cat', 'tags', 'is_published',)
     readonly_fields = ('time_create', 'time_update', 'slug', 'post_image', 'post_image_size',)
     list_display = (
         'title', 'slug', 'time_create', 'time_update', 'cat', 'is_published', 'post_image', 'post_image_size',
     )
     list_display_links = ('title', 'cat',)
     ordering = ('time_create', 'title',)
-    search_fields = ('title', 'content', 'cat__name',)
+    search_fields = ('title', 'content_short', 'content_full', 'cat__name',)
     list_editable = ('is_published',)
     list_per_page = 5
     actions = ['set_published', 'set_draft', ]

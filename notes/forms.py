@@ -1,6 +1,7 @@
 from django import forms
 # from django.core.validators import MinLengthValidator, MaxLengthValidator
 from django.utils.deconstruct import deconstructible
+from django_ckeditor_5.widgets import CKEditor5Widget
 
 from .models import Category, Note
 
@@ -23,10 +24,9 @@ class AddPostForm(forms.ModelForm):
 
     class Meta:
         model = Note
-        fields = ['title', 'content', 'image', 'is_published', 'cat', 'tags']
+        fields = ['title', 'content_short', 'content_full', 'image', 'is_published', 'cat', 'tags']
         widgets = {
             'title': forms.TextInput(attrs={'class': 'form-input'}),
-            'content': forms.Textarea(attrs={'cols': 60, 'rows': 10}),
         }
         # validators = {
         #    'title': RussianValidator(),
@@ -34,6 +34,20 @@ class AddPostForm(forms.ModelForm):
         # labels = {
         #    'title': 'Заголовок',
         # }
+
+    def __init__(self, *args, **kwargs):
+        """
+        Обновление стилей формы под Bootstrap
+        """
+        super().__init__(*args, **kwargs)
+        for field in self.fields:
+            self.fields[field].widget.attrs.update({'class': 'form-control', 'autocomplete': 'off'})
+
+        self.fields['content_short'].widget.attrs.update({'class': 'form-control django_ckeditor_5'})
+        self.fields['content_short'].required = False
+        self.fields['content_full'].widget.attrs.update({'class': 'form-control django_ckeditor_5'})
+        self.fields['content_full'].required = False
+
 
     # def clean_title(self):
     #     allowed_characters = "абвгдеёжзий̆клмнопрстуфхцчшщъыьэюяАБВГДЕЁЖЗИЙКЛМНОПРСТУФХЦЧШЩЪЫЬЭЮЯ123456789- "

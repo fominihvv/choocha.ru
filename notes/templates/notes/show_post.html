@@ -17,18 +17,22 @@
     {% endwith %}
 
     {% if perms.notes.change_note %}
-        <p><a href="{{ post.get_update_url }}">Изменить статью</a></p>
+        <a href="{{ post.get_update_url }}">Изменить статью</a>
     {% endif %}
-
+    <br>
     {% if perms.notes.delete_note %}
-        <p><a href="{{ post.get_delete_url }}">Удалить статью</a></p>
+        <a href="{{ post.get_delete_url }}">Удалить статью</a>
     {% endif %}
 {% endblock %}
 
 {% block content %}
     <h1> {{ title }} </h1>
-    {% if post.image %}
-        <p><img class="img-article-left" src="{{ post.image.url }}" alt=""></p>
-    {% endif %}
-    <p> {{ post.content|linebreaks }}</p>
+    {#  {% if post.image %} #}
+    {#        <p><img class="img-article-left" src="{{ post.image.url }}" alt=""></p> #}
+    {#    {% endif %}     #}
+    {% autoescape off %}
+        <div class="ck-content">
+            {{ post.content_full|safe }}
+        </div>
+    {% endautoescape %}
 {% endblock %}
