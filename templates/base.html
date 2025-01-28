@@ -1,12 +1,15 @@
 <!-- choocha\templates\base.html -->
 {% load static %}
 {% load show_categories_and_tags %}
+
+
 <!DOCTYPE html>
 <html lang="ru">
 <head>
     <title>{{ title }}</title>
     <link type="text/css" href="{% static 'notes/css/styles.css' %}" rel="stylesheet" />
     <link type="text/css" href="{% static 'notes/css/ckeditor5-content.css' %}" rel="stylesheet" />
+    
     <link rel="shortcut icon" href="{% static 'notes/images/main.ico' %}" type="image/x-icon"/>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -15,6 +18,7 @@
     {% endblock %}
 </head>
 <body>
+{% get_media_prefix %}
 <table class="table-page">
     <tr>
         <td style="vertical-align: top;">
