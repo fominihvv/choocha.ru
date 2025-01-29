@@ -1,12 +1,16 @@
-from django.http import HttpResponse, HttpResponseNotFound, HttpRequest
+from django.http import HttpResponse, HttpResponseNotFound, HttpRequest, HttpResponseRedirect
+from django.shortcuts import render
+from django.urls import reverse
+from django.template import RequestContext
 
 
-# Create your views here.
+def e_handler404(request, exception):
+    print('404')
+    print(request)
+    return render(request, 'notes/404.html')
 
 
-def index(request) -> HttpResponse:
-    return HttpResponse('Типа основной сайт')
-
-
-def page_not_found(request, exception) -> HttpResponse:
-    return HttpResponseNotFound(f'<h1>Страница {request.path} не найдена</h1>')
+def e_handler500(request):
+    print('500')
+    print(request)
+    return render(request, 'notes/500.html')

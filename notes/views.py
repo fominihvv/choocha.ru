@@ -20,7 +20,7 @@ class NoteHome(DataMixin, ListView):
     paginate_by = 5
 
     def get_queryset(self) -> QuerySet:
-        return Note.published.all().select_related('cat')
+        return Note.published.all().select_related('cat', 'author')
 
     def get_context_data(self, **kwargs) -> dict[str, Any]:
         context = super().get_context_data(**kwargs)
