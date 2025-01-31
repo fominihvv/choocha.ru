@@ -46,6 +46,7 @@ INSTALLED_APPS = [
     'debug_toolbar',
     'django.contrib.sites',
     'django.contrib.sitemaps',
+    'analytical',
 ]
 
 
@@ -286,3 +287,4 @@ CACHES = {
 # CACHE_MIDDLEWARE_KEY_PREFIX = 'choocha'
 
 SITE_ID = 1
+YANDEX_METRICA_COUNTER_ID = 'choocha.ru'

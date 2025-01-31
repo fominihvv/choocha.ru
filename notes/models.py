@@ -113,6 +113,13 @@ class Note(models.Model):
         default=None,
         verbose_name='Автор'
     )
+    meta_description = models.TextField(
+        max_length=160,
+        blank=True,
+        null=True,
+        verbose_name='Метаописание'
+    )
+
 
     objects = models.Manager()
     published = PublishedManager()

@@ -9,6 +9,7 @@ class NoteSitemap(Sitemap):
     def items(self):
         return Note.published.all()
 
+
     def lastmod(self, obj):
         return obj.time_update
 

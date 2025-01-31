@@ -9,7 +9,7 @@ from .models import Note, TagPost, Category
 @admin.register(Note)
 class NotesAdmin(admin.ModelAdmin):
     fields = ('title', 'slug', 'image', 'post_image', 'post_image_size', 'content_short', 'content_full', 'time_create',
-              'time_update', 'cat', 'tags', 'is_published',)
+              'time_update', 'cat', 'tags', 'is_published', 'meta_description')
     readonly_fields = ('time_create', 'time_update', 'slug', 'post_image', 'post_image_size',)
     list_display = (
         'title', 'slug', 'time_create', 'time_update', 'cat', 'is_published', 'post_image', 'post_image_size',
@@ -27,8 +27,7 @@ class NotesAdmin(admin.ModelAdmin):
     @admin.display(description='Изображение')
     def post_image(note: Note) -> str:
         if note.image:
-            return mark_safe(
-                f"<a href='{note.image.url}'><img src='{note.image.url}' alt='{note.title}' width='200'></a>")
+            return mark_safe(f'<img src="{note.image.url}" alt="{note.title}" width="200">')
         return 'Нет фото'
 
     @staticmethod
@@ -36,7 +35,6 @@ class NotesAdmin(admin.ModelAdmin):
     def post_image_size(note: Note) -> str:
         if note.image:
             return f'{note.image.width}x{note.image.height}'
-            # return mark_safe(f"<a href='{women.photo.url}'><img src='{women.photo.url}' alt='{women.title}' width='200'></a>")
         return 'Нет фото'
 
     @admin.action(description='Опубликовать выбранные записи')

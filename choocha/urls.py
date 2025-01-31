@@ -1,3 +1,4 @@
+# choocha\urls.py
 """
 URL configuration for choocha project.
 
